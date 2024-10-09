@@ -824,7 +824,7 @@ func (o *Object) Hash(ctx context.Context, t hash.Type) (string, error) {
 	}
 
 	if o.digests != nil {
-		return *o.digests, nil
+		return strings.ToLower(*o.digests), nil
 	}
 
 	// sha1 not cached: we fetch and try to obtain the sha1 of the link
@@ -837,7 +837,7 @@ func (o *Object) Hash(ctx context.Context, t hash.Type) (string, error) {
 		fs.Debugf(o, "file sha1 digest missing")
 		return "", nil
 	}
-	return fileSystemAttrs.Digests, nil
+	return strings.ToLower(fileSystemAttrs.Digests), nil
 }
 
 // Size returns the size of an object in bytes
